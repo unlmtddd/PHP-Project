@@ -1,0 +1,8 @@
+# Temporäre Dateien von VS Code und dem System ignorieren
+.vscode/
+*.log
+.DS_Store
+Thumbs.db
+
+# Einstellungen für die Datenbankverbindung, falls private Schlüssel verwendet werden
+config/db.local.php
