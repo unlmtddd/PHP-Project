@@ -1,22 +1,22 @@
 --DB erstellen (if not exist)
 
-CREATE DATABASE  IF NOT EXIST 'motorcycle.db'
+CREATE DATABASE IF NOT EXISTS `motorcycle_db`
 CHARACTER SET utf8mb4
 COLLATE utf8mb4_unicode_ci;
 
 
-USE 'motorcycle.db';
+USE `motorcycle_db`;
 
 --1.Kunden tabbele 
 
-CREATE TABLE IF NOT EXIST 'kunden'
+CREATE TABLE IF NOT EXISTS `kunden`
 (
-    'id'  INT AUTO_INCREMENT PRIMARY KEY,
-    'vorname' VARCHAR(50) NOT NULL ,
-    'nachname' VARCHAR(50) NOT NULL,
-    'telefon' VARCHAR(30)  NULL,
-    'email' VARCHAR(100)  NULL,
-    'create_at' TIMESTAMP DEFAULT CURRENT_TIMETAPS
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `vorname` VARCHAR(50) NOT NULL,
+    `nachname` VARCHAR(50) NOT NULL,
+    `telefon` VARCHAR(30) NULL,
+    `email` VARCHAR(100) NULL,
+    `create_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
 ) ENGINE=Innodb DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
