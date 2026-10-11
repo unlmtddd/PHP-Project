@@ -1,4 +1,4 @@
---DB erstellen (if not exist)
+-- DB erstellen (if not exist)
 
 CREATE DATABASE IF NOT EXISTS `motorcycle_db`
 CHARACTER SET utf8mb4
@@ -7,7 +7,7 @@ COLLATE utf8mb4_unicode_ci;
 
 USE `motorcycle_db`;
 
---1.Kunden tabbele 
+-- 1.Kunden tabbele 
 
 CREATE TABLE IF NOT EXISTS `kunden`
 (
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `kunden`
 
 ) ENGINE=Innodb DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---2.Fahrzeuge tabbele
+-- 2.Fahrzeuge tabbele
 
 CREATE TABLE IF NOT EXISTS `fahrzeuge` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `fahrzeuge` (
 
 
 
---3 Zwischentabbele ( K <-> F) n:m
+-- 3  Zwischentabbele ( K <-> F) n:m
 
 CREATE TABLE IF NOT EXISTS `kunde_fahrzeug` (
     `kunde_id` INT NOT NULL,
