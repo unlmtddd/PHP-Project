@@ -1,6 +1,18 @@
 <?php
 session_start();
+// Meldung und Eingaben für den nächsten Seitenaufruf speichern.
+function zurueckZumFormular($typ, $text, $eingaben = [])
+{
+    $_SESSION['kunden_meldung'] = [
+        'typ' => $typ,
+        'text' => $text,
+    ];
 
+    $_SESSION['kunden_eingaben'] = $eingaben;
+
+    header('Location: index.php', true, 303);
+    exit;
+}
 // Nur POST-Anfragen verarbeiten
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: index.php', true, 303);
@@ -14,10 +26,11 @@ if (
     !is_string($token)
     || !isset($_SESSION['csrf_token'])
     || !hash_equals($_SESSION['csrf_token'], $token)
-) {
-    http_response_code(403);
-    exit('Ungültige Anfrage. Bitte das Formular erneut öffnen.');
-}
+) 
+zurueckZumFormular(
+    'danger',
+    'Die Formularprüfung ist fehlgeschlagen. Bitte erneut versuchen.'
+);
 
 // Formulardaten einlesen und bereinigen
 $daten = [];
@@ -26,8 +39,7 @@ foreach (['vorname', 'nachname', 'telefon', 'email'] as $feld) {
     $wert = $_POST[$feld] ?? '';
 
     if (!is_string($wert)) {
-        http_response_code(400);
-        exit('Ungültige Eingabe.');
+       zurueckZumFormular('danger', 'Ungültige Eingabe.');
     }
 
     $daten[$feld] = trim($wert);
@@ -35,8 +47,11 @@ foreach (['vorname', 'nachname', 'telefon', 'email'] as $feld) {
 
 // Pflichtfelder prüfen
 if ($daten['vorname'] === '' || $daten['nachname'] === '') {
-    http_response_code(422);
-    exit('Bitte Vorname und Nachname eingeben.');
+    zurueckZumFormular(
+    'danger',
+    'Bitte Vorname und Nachname eingeben.',
+    $daten
+);
 }
 
 // Maximale Feldlängen prüfen
@@ -49,8 +64,11 @@ $maxLaengen = [
 
 foreach ($maxLaengen as $feld => $maximum) {
     if (mb_strlen($daten[$feld], 'UTF-8') > $maximum) {
-        http_response_code(422);
-        exit('Eine Eingabe ist zu lang.');
+       zurueckZumFormular(
+    'danger',
+    'Eine Eingabe ist zu lang.',
+    $daten
+);
     }
 }
 
@@ -59,8 +77,11 @@ if (
     $daten['email'] !== ''
     && filter_var($daten['email'], FILTER_VALIDATE_EMAIL) === false
 ) {
-    http_response_code(422);
-    exit('Bitte eine gültige E-Mail-Adresse eingeben.');
+    zurueckZumFormular(
+    'danger',
+    'Bitte eine gültige E-Mail-Adresse eingeben.',
+    $daten
+);
 }
 
 require_once __DIR__ . '/../config/db.php';
@@ -80,10 +101,16 @@ try {
     ]);
 } catch (PDOException $e) {
     error_log($e->getMessage());
-    http_response_code(500);
-    exit('Speichern fehlgeschlagen. Bitte später erneut versuchen.');
+
+    zurueckZumFormular(
+        'danger',
+        'Speichern fehlgeschlagen. Bitte später erneut versuchen.',
+        $daten
+    );
 }
 
-// Nach dem Speichern zur Übersicht wechseln
-header('Location: index.php', true, 303);
-exit;
+// Nach erfolgreichem Speichern eine Meldung und ein leeres Formular zeigen.
+zurueckZumFormular(
+    'success',
+    'Kunde erfolgreich gespeichert.'
+);

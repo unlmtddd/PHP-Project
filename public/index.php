@@ -5,6 +5,19 @@ require_once __DIR__ . '/../config/db.php';
 // Sitzung öffnen, damit der CSRF-Token zwischen Anfragen erhalten bleibt.
 session_start();
 
+
+
+// Meldung und bisherige Eingaben aus der Sitzung übernehmen.
+$meldung = $_SESSION['kunden_meldung'] ?? null;
+$eingaben = $_SESSION['kunden_eingaben'] ?? [];
+
+// Nur einmal anzeigen: Daten nach dem Lesen aus der Sitzung entfernen.
+unset(
+    $_SESSION['kunden_meldung'],
+    $_SESSION['kunden_eingaben']
+);
+
+
 // Pro Sitzung einen zufälligen Token für die Formularprüfung erstellen.
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
@@ -65,6 +78,30 @@ $kunden = $stmt->fetchAll();
                 Kunden anlegen und Kontaktdaten im Blick behalten.
             </p>
         </div>
+        
+
+
+
+<!-- Einmalige Rückmeldung nach dem Absenden des Formulars. -->
+<?php if ($meldung !== null): ?>
+    <div
+        class="alert <?= $meldung['typ'] === 'success'
+            ? 'alert-success'
+            : 'alert-danger' ?>"
+        role="alert"
+    >
+        <?= htmlspecialchars(
+            $meldung['text'],
+            ENT_QUOTES,
+            'UTF-8'
+        ) ?>
+    </div>
+<?php endif; ?>
+
+
+
+
+
 
         <!-- Bootstrap verwendet ein Raster mit 12 Spalten.
              g-4 sorgt für Abstand zwischen Formular und Kundenliste. -->
@@ -117,6 +154,7 @@ $kunden = $stmt->fetchAll();
                                     class="form-control"
                                     id="vorname"
                                     name="vorname"
+                                    value="<?= htmlspecialchars($eingaben['vorname'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
                                     autocomplete="given-name"
                                     maxlength="50"
                                     required
@@ -135,6 +173,7 @@ $kunden = $stmt->fetchAll();
                                     class="form-control"
                                     id="nachname"
                                     name="nachname"
+                                    value="<?= htmlspecialchars($eingaben['nachname'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
                                     autocomplete="family-name"
                                     maxlength="50"
                                     required
@@ -154,6 +193,7 @@ $kunden = $stmt->fetchAll();
                                     class="form-control"
                                     id="telefon"
                                     name="telefon"
+                                    value="<?= htmlspecialchars($eingaben['telefon'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
                                     autocomplete="tel"
                                     maxlength="30"
                                 >
@@ -171,6 +211,7 @@ $kunden = $stmt->fetchAll();
                                     class="form-control"
                                     id="email"
                                     name="email"
+                                    value="<?= htmlspecialchars($eingaben['email'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
                                     autocomplete="email"
                                     maxlength="100"
                                 >
