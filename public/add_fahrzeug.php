@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once __DIR__ . '/../includes/init.php';
 
 // Rückmeldung und Eingaben für die Fahrzeugseite speichern.
 function zurueckZuFahrzeugen($typ, $text, $eingaben = [])
@@ -91,8 +91,6 @@ if ($baujahr === false || $kundeId === false) {
         $daten
     );
 }
-
-require_once __DIR__ . '/../config/db.php';
 
 try {
     // Eine übermittelte ID allein beweist nicht, dass der Kunde existiert.

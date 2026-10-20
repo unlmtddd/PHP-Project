@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once __DIR__ . '/../includes/init.php';
 // Meldung und Eingaben für den nächsten Seitenaufruf speichern.
 function zurueckZumFormular($typ, $text, $eingaben = [])
 {
@@ -27,10 +27,12 @@ if (
     || !isset($_SESSION['csrf_token'])
     || !hash_equals($_SESSION['csrf_token'], $token)
 ) 
-zurueckZumFormular(
+{
+    zurueckZumFormular(
     'danger',
     'Die Formularprüfung ist fehlgeschlagen. Bitte erneut versuchen.'
 );
+}
 
 // Formulardaten einlesen und bereinigen
 $daten = [];
@@ -83,8 +85,6 @@ if (
     $daten
 );
 }
-
-require_once __DIR__ . '/../config/db.php';
 
 // Kunden speichern
 try {
