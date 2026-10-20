@@ -62,9 +62,13 @@ $kunden = $stmt->fetchAll();
                 MotoLog
             </a>
 
-            <span class="navbar-text">
-                Kundenverwaltung
-            </span>
+            <nav class="d-flex gap-3" aria-label="Hauptnavigation">
+    <a class="text-white text-decoration-none"
+       href="index.php" aria-current="page">Kunden</a>
+
+    <a class="text-white-50 text-decoration-none"
+       href="fahrzeuge.php">Fahrzeuge</a>
+</nav>
         </div>
     </header>
 
