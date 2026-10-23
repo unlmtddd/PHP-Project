@@ -19,6 +19,8 @@ $aktuelleSeite = $aktuelleSeite ?? '';
                href="index.php"<?= $aktuelleSeite === 'kunden' ? ' aria-current="page"' : '' ?>>Kunden</a>
             <a class="<?= $aktuelleSeite === 'fahrzeuge' ? 'text-white' : 'text-white-50' ?> text-decoration-none"
                href="fahrzeuge.php"<?= $aktuelleSeite === 'fahrzeuge' ? ' aria-current="page"' : '' ?>>Fahrzeuge</a>
+            <a class="<?= $aktuelleSeite === 'wartungen' ? 'text-white' : 'text-white-50' ?> text-decoration-none"
+               href="wartungen.php"<?= $aktuelleSeite === 'wartungen' ? ' aria-current="page"' : '' ?>>Wartungen</a>
         </nav>
     </div>
 </header>
