@@ -56,6 +56,9 @@ try {
     $meldung = ['typ' => 'danger', 'text' => 'Die Wartungsdaten konnten nicht geladen werden. Bitte später erneut versuchen.'];
 }
 
+// Nur der geprüfte Fahrzeugfilter wird an Bearbeiten und Löschen weitergegeben.
+$filterSuffix = $fahrzeugFilter !== '' ? '&fahrzeug_id=' . rawurlencode((string) $fahrzeugFilter) : '';
+
 $seitentitel = 'MotoLog – Wartungen';
 $aktuelleSeite = 'wartungen';
 require __DIR__ . '/../templates/header.php';
