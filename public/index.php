@@ -7,12 +7,40 @@ $meldung = $_SESSION['kunden_meldung'] ?? null;
 $eingaben = $_SESSION['kunden_eingaben'] ?? [];
 unset($_SESSION['kunden_meldung'], $_SESSION['kunden_eingaben']);
 
-// Kunden alphabetisch nach Nachname und Vorname laden.
-$kunden = $pdo->query(
-    'SELECT id, vorname, nachname, telefon, email
-     FROM kunden
-     ORDER BY nachname, vorname'
-)->fetchAll();
+// Suchbegriff als einfache GET-Zeichenkette prüfen und auf 100 Zeichen begrenzen.
+$kundensuche = $_GET['suche'] ?? '';
+if (!is_string($kundensuche)) {
+    $kundensuche = '';
+}
+$kundensuche = mb_substr(trim($kundensuche), 0, 100, 'UTF-8');
+
+$kundenBedingungen = [];
+$kundenParameter = [];
+if ($kundensuche !== '') {
+    // %, _ und ! werden escaped, damit die Suche keine LIKE-Muster vom Benutzer ausführt.
+    $suchmuster = '%' . strtr($kundensuche, ['!' => '!!', '%' => '!%', '_' => '!_']) . '%';
+    $kundenBedingungen[] =
+        "(vorname LIKE :suche_vorname ESCAPE '!'\n"
+        . " OR nachname LIKE :suche_nachname ESCAPE '!'\n"
+        . " OR COALESCE(telefon, '') LIKE :suche_telefon ESCAPE '!'\n"
+        . " OR COALESCE(email, '') LIKE :suche_email ESCAPE '!')";
+    // Bei deaktivierten emulierten Prepared Statements erhält jedes LIKE ein eigenes Binding.
+    $kundenParameter = [
+        'suche_vorname' => $suchmuster,
+        'suche_nachname' => $suchmuster,
+        'suche_telefon' => $suchmuster,
+        'suche_email' => $suchmuster,
+    ];
+}
+
+$kundenSql = 'SELECT id, vorname, nachname, telefon, email FROM kunden';
+if ($kundenBedingungen !== []) {
+    $kundenSql .= ' WHERE ' . implode(' AND ', $kundenBedingungen);
+}
+$kundenSql .= ' ORDER BY nachname, vorname';
+$stmt = $pdo->prepare($kundenSql);
+$stmt->execute($kundenParameter);
+$kunden = $stmt->fetchAll();
 
 $seitentitel = 'MotoLog – Kunden';
 $aktuelleSeite = 'kunden';
