@@ -2,7 +2,7 @@
     <div class="card border-0 shadow-sm"><div class="card-body p-4">
         <?php require __DIR__ . '/filter.php'; ?>
         <div class="d-flex justify-content-between align-items-center gap-2 mb-3">
-            <h2 id="kundenliste-titel" class="h5 mb-0">Kundenliste</h2><span class="badge text-bg-secondary"><?= count($kunden) ?> Kunden</span>
+            <h2 id="kundenliste-titel" class="h5 mb-0">Kundenliste</h2><span class="badge text-bg-secondary"><?= count($kunden) ?> <?= count($kunden) === 1 ? 'Kunde' : 'Kunden' ?></span>
         </div>
         <?php if (empty($kunden) && $kundensuche !== ''): ?>
             <div class="text-center py-5"><p class="fw-semibold mb-1">Keine Kunden für diese Suche gefunden.</p><p class="text-body-secondary mb-0">Versuchen Sie einen anderen Suchbegriff.</p></div>

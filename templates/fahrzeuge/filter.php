@@ -8,4 +8,4 @@
     <div class="col-6 col-md-1"><button type="submit" class="btn btn-primary w-100">Suchen</button></div>
     <div class="col-6 col-md-1"><a href="fahrzeuge.php" class="btn btn-outline-secondary w-100">Zurücksetzen</a></div>
 </form>
-<p class="small text-body-secondary">Suchbegriff: „<?= e($fahrzeugsuche === '' ? 'leer' : $fahrzeugsuche) ?>“ · <?= count($fahrzeuge) ?> Fahrzeuge gefunden</p>
+<p class="small text-body-secondary">Suchbegriff: „<?= e($fahrzeugsuche === '' ? 'leer' : $fahrzeugsuche) ?>“ · <?= count($fahrzeuge) ?> <?= count($fahrzeuge) === 1 ? 'Fahrzeug' : 'Fahrzeuge' ?> gefunden</p>

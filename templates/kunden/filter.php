@@ -4,4 +4,4 @@
     <div class="col-6 col-md-2"><button type="submit" class="btn btn-primary w-100">Suchen</button></div>
     <div class="col-6 col-md-2"><a href="index.php" class="btn btn-outline-secondary w-100">Zurücksetzen</a></div>
 </form>
-<p class="small text-body-secondary">Suchbegriff: „<?= e($kundensuche === '' ? 'leer' : $kundensuche) ?>“ · <?= count($kunden) ?> Kunden gefunden</p>
+<p class="small text-body-secondary">Suchbegriff: „<?= e($kundensuche === '' ? 'leer' : $kundensuche) ?>“ · <?= count($kunden) ?> <?= count($kunden) === 1 ? 'Kunde' : 'Kunden' ?> gefunden</p>

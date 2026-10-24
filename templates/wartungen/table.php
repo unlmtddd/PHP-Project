@@ -1,6 +1,6 @@
 <section class="col-12 col-lg-8" aria-labelledby="wartung-liste-titel">
     <div class="card border-0 shadow-sm"><div class="card-body p-4">
-        <div class="d-flex flex-wrap justify-content-between gap-2 mb-3"><h2 id="wartung-liste-titel" class="h5 mb-0">Wartungshistorie</h2><span class="badge text-bg-secondary"><?= count($wartungen) ?> Einträge</span></div>
+        <div class="d-flex flex-wrap justify-content-between gap-2 mb-3"><h2 id="wartung-liste-titel" class="h5 mb-0">Wartungshistorie</h2><span class="badge text-bg-secondary"><?= count($wartungen) ?> <?= count($wartungen) === 1 ? 'Eintrag' : 'Einträge' ?></span></div>
         <form method="get" class="row g-2 align-items-end mb-4">
             <div class="col-12 col-md-8"><label for="filter-fahrzeug" class="form-label">Nach Fahrzeug filtern</label>
                 <select class="form-select" id="filter-fahrzeug" name="fahrzeug_id"><option value="">Alle Fahrzeuge</option>
