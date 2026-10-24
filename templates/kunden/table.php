@@ -8,9 +8,10 @@
         <?php else: ?>
             <div class="table-responsive"><table class="table table-hover align-middle">
                 <caption>Gespeicherte Kunden mit Kontaktdaten</caption>
-                <thead class="table-light"><tr><th scope="col">Vorname</th><th scope="col">Nachname</th><th scope="col">Telefon</th><th scope="col">E-Mail</th></tr></thead>
+                <thead class="table-light"><tr><th scope="col">Vorname</th><th scope="col">Nachname</th><th scope="col">Telefon</th><th scope="col">E-Mail</th><th scope="col">Aktionen</th></tr></thead>
                 <tbody><?php foreach ($kunden as $kunde): ?><tr>
                     <td><?= e($kunde['vorname']) ?></td><td><?= e($kunde['nachname']) ?></td><td><?= e($kunde['telefon'] ?? '—') ?></td><td><?= e($kunde['email'] ?? '—') ?></td>
+                    <td class="text-nowrap"><a href="edit_kunde.php?id=<?= e($kunde['id']) ?>" class="btn btn-sm btn-outline-primary">Bearbeiten</a> <a href="delete_kunde.php?id=<?= e($kunde['id']) ?>" class="btn btn-sm btn-outline-danger">Löschen</a></td>
                 </tr><?php endforeach; ?></tbody>
             </table></div>
         <?php endif; ?>
