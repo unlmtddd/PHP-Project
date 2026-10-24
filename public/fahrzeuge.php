@@ -77,7 +77,13 @@ if ($kundenFilter === 'ohne') {
     $fahrzeugBedingungen[] = 'NOT EXISTS (SELECT 1 FROM kunde_fahrzeug AS filter_kf WHERE filter_kf.fahrzeug_id = f.id)';
 } elseif ($kundenFilter !== '') {
     // EXISTS filtert nach einem Kunden, ohne die vollständige Kundenliste der Maschine abzuschneiden.
-    $fahrzeugBedingungen[] = 'EXISTS (SELECT 1 FROM kunde_fahrzeug AS filter_kf WHERE filter_kf.fahrzeug_id = f.id AND filter_kf.kunde_id = :kunden_filter_id)';
+    $fahrzeugBedingungen[] =
+        'EXISTS (
+            SELECT 1
+            FROM kunde_fahrzeug AS filter_kf
+            WHERE filter_kf.fahrzeug_id = f.id
+              AND filter_kf.kunde_id = :kunden_filter_id
+        )';
     $fahrzeugParameter['kunden_filter_id'] = (int) $kundenFilter;
 }
 

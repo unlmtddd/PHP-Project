@@ -107,7 +107,13 @@ try {
     $stmt->execute(['kennzeichen' => $daten['kennzeichen'], 'id' => $fahrzeugId]);
     if ($stmt->fetchColumn() !== false) {
         $pdo->rollBack();
-        zurueckZurFahrzeugbearbeitung($fahrzeugId, 'danger', 'Dieses Kennzeichen ist bereits einem anderen Fahrzeug zugeordnet.', $daten, $kundenIds);
+        zurueckZurFahrzeugbearbeitung(
+            $fahrzeugId,
+            'danger',
+            'Dieses Kennzeichen ist bereits einem anderen Fahrzeug zugeordnet.',
+            $daten,
+            $kundenIds
+        );
     }
 
     if ($kundenIds !== []) {
@@ -118,7 +124,13 @@ try {
         $fehlendeKunden = array_diff($kundenIds, $vorhandeneKunden);
         if ($fehlendeKunden !== []) {
             $pdo->rollBack();
-            zurueckZurFahrzeugbearbeitung($fahrzeugId, 'danger', 'Mindestens ein ausgewählter Kunde existiert nicht mehr.', $daten, $kundenIds);
+            zurueckZurFahrzeugbearbeitung(
+                $fahrzeugId,
+                'danger',
+                'Mindestens ein ausgewählter Kunde existiert nicht mehr.',
+                $daten,
+                $kundenIds
+            );
         }
     }
 

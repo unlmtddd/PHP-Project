@@ -28,8 +28,15 @@ if ($kundeId === false) {
 if ($methode === 'POST') {
     // Das Löschen ist ausschließlich per POST und mit einem gültigen Sitzungstoken erlaubt.
     $token = $_POST['csrf_token'] ?? '';
-    if (!is_string($token) || !isset($_SESSION['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $token)) {
-        $_SESSION['kunden_delete_meldung'] = ['typ' => 'danger', 'text' => 'Die Formularprüfung ist fehlgeschlagen. Bitte erneut versuchen.'];
+    if (
+        !is_string($token)
+        || !isset($_SESSION['csrf_token'])
+        || !hash_equals($_SESSION['csrf_token'], $token)
+    ) {
+        $_SESSION['kunden_delete_meldung'] = [
+            'typ' => 'danger',
+            'text' => 'Die Formularprüfung ist fehlgeschlagen. Bitte erneut versuchen.',
+        ];
         header('Location: delete_kunde.php?id=' . rawurlencode((string) $kundeId), true, 303);
         exit;
     }
@@ -84,7 +91,10 @@ require __DIR__ . '/../templates/header.php';
             <h1 id="kunde-loeschen-titel" class="h2">Kunde löschen</h1>
             <p>Möchten Sie den Kunden <strong><?= e($kunde['vorname'] . ' ' . $kunde['nachname']) ?></strong> wirklich löschen?</p>
             <p>Dieser Kunde hat <?= e($fahrzeugZuordnungen) ?> Fahrzeugzuordnung<?= $fahrzeugZuordnungen === 1 ? '' : 'en' ?>.</p>
-            <div class="alert alert-warning">Der Kunde und seine Fahrzeugzuordnungen werden gelöscht.<br>Fahrzeuge und Wartungseinträge bleiben erhalten.</div>
+            <div class="alert alert-warning">
+                Der Kunde und seine Fahrzeugzuordnungen werden gelöscht.<br>
+                Fahrzeuge und Wartungseinträge bleiben erhalten.
+            </div>
             <form method="post" class="d-flex flex-wrap gap-2">
                 <input type="hidden" name="id" value="<?= e($kunde['id']) ?>">
                 <input type="hidden" name="csrf_token" value="<?= e($_SESSION['csrf_token']) ?>">

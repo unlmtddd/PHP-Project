@@ -45,8 +45,17 @@ if ($wartungId === false) {
 
 // Nur ein passender Sitzungstoken erlaubt das Ändern der Wartung.
 $token = $_POST['csrf_token'] ?? '';
-if (!is_string($token) || !isset($_SESSION['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $token)) {
-    zurueckZurWartungsbearbeitung($wartungId, $fahrzeugFilter, 'danger', 'Die Formularprüfung ist fehlgeschlagen. Bitte erneut versuchen.');
+if (
+    !is_string($token)
+    || !isset($_SESSION['csrf_token'])
+    || !hash_equals($_SESSION['csrf_token'], $token)
+) {
+    zurueckZurWartungsbearbeitung(
+        $wartungId,
+        $fahrzeugFilter,
+        'danger',
+        'Die Formularprüfung ist fehlgeschlagen. Bitte erneut versuchen.'
+    );
 }
 
 $daten = [];
@@ -81,8 +90,20 @@ if ($kostenGueltig) {
     $kosten = $kostenGanzzahl . '.' . str_pad($kostenNachkomma, 2, '0');
 }
 
-if ($fahrzeugId === false || $kmStand === false || !$datumGueltig || mb_strlen($daten['beschreibung'], 'UTF-8') > 5000 || !$kostenGueltig) {
-    zurueckZurWartungsbearbeitung($wartungId, $fahrzeugFilter, 'danger', 'Bitte Datum, Fahrzeug, Kilometerstand, Beschreibung und Kosten korrekt eingeben.', $daten);
+if (
+    $fahrzeugId === false
+    || $kmStand === false
+    || !$datumGueltig
+    || mb_strlen($daten['beschreibung'], 'UTF-8') > 5000
+    || !$kostenGueltig
+) {
+    zurueckZurWartungsbearbeitung(
+        $wartungId,
+        $fahrzeugFilter,
+        'danger',
+        'Bitte Datum, Fahrzeug, Kilometerstand, Beschreibung und Kosten korrekt eingeben.',
+        $daten
+    );
 }
 
 try {
@@ -117,7 +138,13 @@ try {
     ]);
 } catch (PDOException $e) {
     error_log($e->getMessage());
-    zurueckZurWartungsbearbeitung($wartungId, $fahrzeugFilter, 'danger', 'Speichern fehlgeschlagen. Bitte später erneut versuchen.', $daten);
+    zurueckZurWartungsbearbeitung(
+        $wartungId,
+        $fahrzeugFilter,
+        'danger',
+        'Speichern fehlgeschlagen. Bitte später erneut versuchen.',
+        $daten
+    );
 }
 
 $meldungText = 'Wartung erfolgreich aktualisiert.';

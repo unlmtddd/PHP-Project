@@ -37,8 +37,15 @@ if ($wartungId === false) {
 if ($methode === 'POST') {
     // Das Löschen ist ausschließlich per POST und mit einem gültigen Sitzungstoken erlaubt.
     $token = $_POST['csrf_token'] ?? '';
-    if (!is_string($token) || !isset($_SESSION['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $token)) {
-        $_SESSION['wartung_delete_meldung'] = ['typ' => 'danger', 'text' => 'Die Formularprüfung ist fehlgeschlagen. Bitte erneut versuchen.'];
+    if (
+        !is_string($token)
+        || !isset($_SESSION['csrf_token'])
+        || !hash_equals($_SESSION['csrf_token'], $token)
+    ) {
+        $_SESSION['wartung_delete_meldung'] = [
+            'typ' => 'danger',
+            'text' => 'Die Formularprüfung ist fehlgeschlagen. Bitte erneut versuchen.',
+        ];
         $query = '?id=' . rawurlencode((string) $wartungId);
         if ($fahrzeugFilter !== '') {
             $query .= '&fahrzeug_id=' . rawurlencode((string) $fahrzeugFilter);
