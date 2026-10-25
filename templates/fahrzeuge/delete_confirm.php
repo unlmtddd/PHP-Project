@@ -1,6 +1,6 @@
 <section class="col-12 col-lg-7" aria-labelledby="fahrzeug-loeschen-titel">
-    <div class="card border-0 shadow-sm">
-        <div class="card-body p-4">
+    <div class="card">
+        <div class="card-body">
             <h1 id="fahrzeug-loeschen-titel" class="h2">Fahrzeug löschen</h1>
             <p>
                 Möchten Sie
@@ -21,7 +21,10 @@
             <form method="post" class="d-flex flex-wrap gap-2">
                 <input type="hidden" name="id" value="<?= e($fahrzeug['id']) ?>">
                 <input type="hidden" name="csrf_token" value="<?= e($_SESSION['csrf_token']) ?>">
-                <button type="submit" class="btn btn-danger">Endgültig löschen</button>
+                <button type="submit" class="btn btn-danger">
+                    <?= motologIcon('trash', 'icon') ?>
+                    <span>Endgültig löschen</span>
+                </button>
                 <a href="fahrzeuge.php" class="btn btn-outline-secondary">Abbrechen</a>
             </form>
         </div>

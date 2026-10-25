@@ -1,14 +1,14 @@
 <section class="col-12 col-lg-8" aria-labelledby="kundenliste-titel">
-    <div class="card border-0 shadow-sm">
-        <div class="card-body p-4">
-            <?php require __DIR__ . '/filter.php'; ?>
-
-            <div class="d-flex justify-content-between align-items-center gap-2 mb-3">
+    <div class="card">
+        <div class="card-body">
+            <div class="list-heading mb-3">
                 <h2 id="kundenliste-titel" class="h5 mb-0">Kundenliste</h2>
                 <span class="badge text-bg-secondary">
                     <?= count($kunden) ?> <?= count($kunden) === 1 ? 'Kunde' : 'Kunden' ?>
                 </span>
             </div>
+
+            <?php require __DIR__ . '/filter.php'; ?>
 
             <?php if (empty($kunden) && $kundensuche !== ''): ?>
                 <div class="text-center py-5">
@@ -26,7 +26,7 @@
                 <div class="table-responsive">
                     <table class="table table-hover align-middle">
                         <caption>Gespeicherte Kunden mit Kontaktdaten</caption>
-                        <thead class="table-light">
+                        <thead>
                             <tr>
                                 <th scope="col">Vorname</th>
                                 <th scope="col">Nachname</th>
@@ -42,15 +42,15 @@
                                     <td><?= e($kunde['nachname']) ?></td>
                                     <td><?= e($kunde['telefon'] ?? '—') ?></td>
                                     <td><?= e($kunde['email'] ?? '—') ?></td>
-                                    <td class="text-nowrap">
+                                    <td class="actions-cell">
                                         <a
                                             href="edit_kunde.php?id=<?= e($kunde['id']) ?>"
                                             class="btn btn-sm btn-outline-primary"
-                                        >Bearbeiten</a>
+                                        ><?= motologIcon('edit', 'icon') ?>Bearbeiten</a>
                                         <a
                                             href="delete_kunde.php?id=<?= e($kunde['id']) ?>"
                                             class="btn btn-sm btn-outline-danger"
-                                        >Löschen</a>
+                                        ><?= motologIcon('trash', 'icon') ?>Löschen</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

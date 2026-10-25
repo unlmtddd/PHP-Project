@@ -1,4 +1,4 @@
-<footer class="container py-4 small text-body-secondary">
+<footer class="site-footer container py-4 small">
     MotoLog · Kunden, Fahrzeuge und Wartungen
 </footer>
 </body>

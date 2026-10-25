@@ -1,6 +1,6 @@
 <section class="col-12 col-lg-4" aria-labelledby="wartung-formular-titel">
-    <div class="card border-0 shadow-sm">
-        <div class="card-body p-4">
+    <div class="card">
+        <div class="card-body">
             <h2 id="wartung-formular-titel" class="h5">Wartung erfassen</h2>
 
             <?php if (empty($fahrzeuge)): ?>
@@ -85,7 +85,10 @@
                         >
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-100">Wartung speichern</button>
+                    <button type="submit" class="btn btn-primary w-100">
+                        <?= motologIcon('floppy', 'icon') ?>
+                        <span>Wartung speichern</span>
+                    </button>
                 </form>
             <?php endif; ?>
         </div>

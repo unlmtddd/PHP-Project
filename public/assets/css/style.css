@@ -1,0 +1,349 @@
+/* Gemeinsame Farben und Abstände für alle Projektbereiche. */
+:root {
+    --motolog-navy: #102a43;
+    --motolog-navy-dark: #0b1f33;
+    --motolog-blue: #1f6feb;
+    --motolog-blue-dark: #1558b0;
+    --motolog-surface: #ffffff;
+    --motolog-background: #eef3f8;
+    --motolog-border: #d9e2ec;
+    --motolog-muted: #52606d;
+    --motolog-danger: #b42318;
+}
+
+body.app-body {
+    min-width: 320px;
+    background: var(--motolog-background);
+    color: #243b53;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.site-header {
+    background: var(--motolog-navy);
+    box-shadow: 0 2px 8px rgba(16, 42, 67, 0.18);
+}
+
+.site-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 4.25rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.site-brand {
+    align-items: center;
+    color: #ffffff;
+    display: inline-flex;
+    gap: 10px;
+    letter-spacing: 0.02em;
+}
+
+.icon {
+    display: inline-block;
+    flex: 0 0 auto;
+    height: 1.1rem;
+    width: 1.1rem;
+}
+
+.icon-brand {
+    height: 28px;
+    width: 36px;
+}
+
+.icon-nav {
+    height: 20px;
+    width: 20px;
+}
+
+.icon-nav.icon-motorbike {
+    width: 22px;
+}
+
+.site-nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.site-nav-link {
+    align-items: center;
+    border-bottom: 2px solid transparent;
+    color: rgba(255, 255, 255, 0.72);
+    display: inline-flex;
+    gap: 0.35rem;
+    padding: 0.45rem 0.15rem;
+    transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.site-nav-link:hover,
+.site-nav-link:focus-visible,
+.site-nav-link.is-active {
+    border-bottom-color: #ffffff;
+    color: #ffffff;
+}
+
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--motolog-blue-dark);
+    outline-offset: 2px;
+}
+
+/* Auf dunklem Hintergrund bleibt der Tastaturfokus deutlich sichtbar. */
+.site-header a:focus-visible {
+    outline-color: #ffffff;
+}
+
+.site-header-inner,
+main.container,
+footer.site-footer {
+    width: 100%;
+    max-width: 1240px;
+}
+
+.row > [class*="col-"] {
+    min-width: 0;
+}
+
+main > .mb-4 p,
+main > p.text-body-secondary {
+    color: var(--motolog-muted);
+}
+
+.card {
+    background: var(--motolog-surface);
+    border: 1px solid var(--motolog-border);
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 14px rgba(16, 42, 67, 0.07);
+}
+
+.card-body {
+    padding: 1.5rem;
+    overflow-wrap: anywhere;
+}
+
+.list-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.list-heading .badge {
+    flex-shrink: 0;
+}
+
+.card h1,
+.card h2 {
+    color: var(--motolog-navy);
+}
+
+.form-label,
+legend {
+    color: #334e68;
+    font-weight: 600;
+}
+
+.form-control,
+.form-select {
+    border-color: #bcccdc;
+    min-height: 2.7rem;
+}
+
+.form-control::placeholder {
+    color: #829ab1;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--motolog-blue);
+    box-shadow: 0 0 0 0.2rem rgba(31, 111, 235, 0.16);
+}
+
+.btn {
+    align-items: center;
+    display: inline-flex;
+    gap: 0.35rem;
+    justify-content: center;
+    border-radius: 0.45rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.btn .icon {
+    height: 1.05rem;
+    width: 1.05rem;
+}
+
+.btn-primary {
+    background: var(--motolog-blue);
+    border-color: var(--motolog-blue);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+    background: var(--motolog-blue-dark);
+    border-color: var(--motolog-blue-dark);
+}
+
+.btn-outline-primary {
+    color: var(--motolog-blue-dark);
+    border-color: #7aa7e8;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus-visible {
+    background: var(--motolog-blue);
+    border-color: var(--motolog-blue);
+}
+
+.btn-outline-danger {
+    color: var(--motolog-danger);
+}
+
+.alert {
+    border-radius: 0.55rem;
+    overflow-wrap: anywhere;
+}
+
+.alert.d-flex {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.alert-danger {
+    border-left: 4px solid var(--motolog-danger);
+}
+
+.alert-success {
+    border-left: 4px solid #198754;
+}
+
+.table-responsive {
+    border: 1px solid var(--motolog-border);
+    border-radius: 0.55rem;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table > :not(caption) > * > * {
+    padding: 0.85rem 0.75rem;
+}
+
+.table thead th {
+    background: #f4f7fb;
+    color: #334e68;
+    font-size: 0.83rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.table-hover > tbody > tr:hover > * {
+    background: #f4f8fc;
+}
+
+.table td,
+.table th {
+    overflow-wrap: anywhere;
+    vertical-align: middle;
+}
+
+.filter-form > [class*="col-"] {
+    min-width: 0;
+}
+
+/* Die Kartenbreite bestimmt den Umbruch, nicht nur die Fensterbreite. */
+.filter-form > .col-md,
+.filter-form > .col-lg {
+    flex: 1 1 12rem;
+    min-width: min(100%, 12rem);
+}
+
+.filter-form .btn {
+    min-width: 8rem;
+    min-height: 2.7rem;
+}
+
+.filter-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.filter-actions .btn {
+    flex: 1 0 auto;
+}
+
+.actions-cell {
+    min-width: 13rem;
+    white-space: normal;
+}
+
+.actions-cell .btn {
+    min-width: 7.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.vehicle-make {
+    color: var(--motolog-navy);
+    display: block;
+    font-weight: 700;
+}
+
+.vehicle-model {
+    color: var(--motolog-muted);
+    display: block;
+    font-size: 0.9rem;
+    margin-top: 0.15rem;
+}
+
+.vehicle-plate {
+    background: #f7fafc;
+    border: 1px solid #bcccdc;
+    border-radius: 0.3rem;
+    display: inline-block;
+    font-size: 0.88rem;
+    letter-spacing: 0.04em;
+    padding: 0.2rem 0.45rem;
+    white-space: nowrap;
+}
+
+footer.site-footer {
+    color: var(--motolog-muted);
+}
+
+/* Die Navigation und Aktionen bleiben auf kleinen Bildschirmen erreichbar. */
+@media (max-width: 575.98px) {
+    .site-header-inner {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 0.45rem 1rem;
+    }
+
+    .site-nav {
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .site-nav-link {
+        font-size: 0.92rem;
+    }
+
+    .card-body {
+        padding: 1.15rem;
+    }
+
+    .actions-cell {
+        min-width: 11rem;
+    }
+}

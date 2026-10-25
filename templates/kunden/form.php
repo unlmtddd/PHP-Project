@@ -1,6 +1,6 @@
 <section class="col-12 col-lg-4" aria-labelledby="kundenformular-titel">
-    <div class="card border-0 shadow-sm">
-        <div class="card-body p-4">
+    <div class="card">
+        <div class="card-body">
             <h2 id="kundenformular-titel" class="h5 mb-2">Neuen Kunden anlegen</h2>
             <p class="small text-body-secondary">Mit * markierte Felder sind Pflichtfelder.</p>
 
@@ -61,7 +61,10 @@
                     >
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100">Kunden speichern</button>
+                <button type="submit" class="btn btn-primary w-100">
+                    <?= motologIcon('floppy', 'icon') ?>
+                    <span>Kunden speichern</span>
+                </button>
             </form>
         </div>
     </div>

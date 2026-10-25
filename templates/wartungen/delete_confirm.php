@@ -1,6 +1,6 @@
 <section class="col-12 col-lg-7" aria-labelledby="wartung-loeschen-titel">
-    <div class="card border-0 shadow-sm">
-        <div class="card-body p-4">
+    <div class="card">
+        <div class="card-body">
             <h1 id="wartung-loeschen-titel" class="h2">Wartung löschen</h1>
             <p>
                 Möchten Sie den Wartungseintrag für
@@ -38,7 +38,10 @@
                     >
                 <?php endif; ?>
                 <input type="hidden" name="csrf_token" value="<?= e($_SESSION['csrf_token']) ?>">
-                <button type="submit" class="btn btn-danger">Endgültig löschen</button>
+                <button type="submit" class="btn btn-danger">
+                    <?= motologIcon('trash', 'icon') ?>
+                    <span>Endgültig löschen</span>
+                </button>
                 <a href="wartungen.php<?= $filterSuffix ?>" class="btn btn-outline-secondary">
                     Abbrechen
                 </a>

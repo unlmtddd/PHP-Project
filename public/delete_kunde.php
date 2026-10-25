@@ -87,7 +87,7 @@ require __DIR__ . '/../templates/header.php';
 <main class="container py-4">
     <?php require __DIR__ . '/../templates/message.php'; ?>
     <section class="col-12 col-lg-7" aria-labelledby="kunde-loeschen-titel">
-        <div class="card border-0 shadow-sm"><div class="card-body p-4">
+        <div class="card"><div class="card-body">
             <h1 id="kunde-loeschen-titel" class="h2">Kunde löschen</h1>
             <p>Möchten Sie den Kunden <strong><?= e($kunde['vorname'] . ' ' . $kunde['nachname']) ?></strong> wirklich löschen?</p>
             <p>Dieser Kunde hat <?= e($fahrzeugZuordnungen) ?> Fahrzeugzuordnung<?= $fahrzeugZuordnungen === 1 ? '' : 'en' ?>.</p>
@@ -98,7 +98,10 @@ require __DIR__ . '/../templates/header.php';
             <form method="post" class="d-flex flex-wrap gap-2">
                 <input type="hidden" name="id" value="<?= e($kunde['id']) ?>">
                 <input type="hidden" name="csrf_token" value="<?= e($_SESSION['csrf_token']) ?>">
-                <button type="submit" class="btn btn-danger">Endgültig löschen</button>
+                <button type="submit" class="btn btn-danger">
+                    <?= motologIcon('trash', 'icon') ?>
+                    <span>Endgültig löschen</span>
+                </button>
                 <a href="index.php" class="btn btn-outline-secondary">Abbrechen</a>
             </form>
         </div></div>

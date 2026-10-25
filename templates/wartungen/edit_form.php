@@ -1,6 +1,6 @@
 <section class="col-12 col-lg-7" aria-labelledby="wartung-bearbeiten-titel">
-    <div class="card border-0 shadow-sm">
-        <div class="card-body p-4">
+    <div class="card">
+        <div class="card-body">
             <h1 id="wartung-bearbeiten-titel" class="h2 mb-3">Wartung bearbeiten</h1>
             <p class="small text-body-secondary">Alle Felder sind Pflichtfelder.</p>
 
@@ -87,7 +87,10 @@
                 </div>
 
                 <div class="d-flex flex-wrap gap-2">
-                    <button type="submit" class="btn btn-primary">Wartung speichern</button>
+                    <button type="submit" class="btn btn-primary">
+                        <?= motologIcon('floppy', 'icon') ?>
+                        <span>Wartung speichern</span>
+                    </button>
                     <a href="wartungen.php<?= $filterSuffix ?>" class="btn btn-outline-secondary">
                         Abbrechen
                     </a>

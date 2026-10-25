@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/../includes/icons.php';
+
 $seitentitel = $seitentitel ?? 'MotoLog';
 $aktuelleSeite = $aktuelleSeite ?? '';
 ?>
@@ -9,18 +11,28 @@ $aktuelleSeite = $aktuelleSeite ?? '';
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= e($seitentitel) ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/style.css?v=6" rel="stylesheet">
 </head>
-<body class="bg-body-tertiary">
-<header class="navbar navbar-dark bg-dark">
-    <div class="container py-2">
-        <a class="navbar-brand fw-bold" href="index.php">MotoLog</a>
-        <nav class="d-flex gap-3" aria-label="Hauptnavigation">
-            <a class="<?= $aktuelleSeite === 'kunden' ? 'text-white' : 'text-white-50' ?> text-decoration-none"
-               href="index.php"<?= $aktuelleSeite === 'kunden' ? ' aria-current="page"' : '' ?>>Kunden</a>
-            <a class="<?= $aktuelleSeite === 'fahrzeuge' ? 'text-white' : 'text-white-50' ?> text-decoration-none"
-               href="fahrzeuge.php"<?= $aktuelleSeite === 'fahrzeuge' ? ' aria-current="page"' : '' ?>>Fahrzeuge</a>
-            <a class="<?= $aktuelleSeite === 'wartungen' ? 'text-white' : 'text-white-50' ?> text-decoration-none"
-               href="wartungen.php"<?= $aktuelleSeite === 'wartungen' ? ' aria-current="page"' : '' ?>>Wartungen</a>
+<body class="app-body">
+<header class="site-header">
+    <div class="container site-header-inner">
+        <a class="site-brand navbar-brand fw-bold mb-0" href="index.php">
+            <?= motologIcon('motorcycle', 'icon icon-brand') ?>
+            <span>MotoLog</span>
+        </a>
+        <nav class="site-nav" aria-label="Hauptnavigation">
+            <a
+                class="site-nav-link text-decoration-none <?= $aktuelleSeite === 'kunden' ? 'is-active' : '' ?>"
+                href="index.php"<?= $aktuelleSeite === 'kunden' ? ' aria-current="page"' : '' ?>
+            ><?= motologIcon('users', 'icon icon-nav') ?><span>Kunden</span></a>
+            <a
+                class="site-nav-link text-decoration-none <?= $aktuelleSeite === 'fahrzeuge' ? 'is-active' : '' ?>"
+                href="fahrzeuge.php"<?= $aktuelleSeite === 'fahrzeuge' ? ' aria-current="page"' : '' ?>
+            ><?= motologIcon('motorcycle', 'icon icon-nav icon-motorbike') ?><span>Fahrzeuge</span></a>
+            <a
+                class="site-nav-link text-decoration-none <?= $aktuelleSeite === 'wartungen' ? 'is-active' : '' ?>"
+                href="wartungen.php"<?= $aktuelleSeite === 'wartungen' ? ' aria-current="page"' : '' ?>
+            ><?= motologIcon('wrench', 'icon icon-nav') ?><span>Wartungen</span></a>
         </nav>
     </div>
 </header>

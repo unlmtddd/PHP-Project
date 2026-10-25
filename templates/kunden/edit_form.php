@@ -1,6 +1,6 @@
 <section class="col-12 col-lg-7" aria-labelledby="kunden-bearbeiten-titel">
-    <div class="card border-0 shadow-sm">
-        <div class="card-body p-4">
+    <div class="card">
+        <div class="card-body">
             <h1 id="kunden-bearbeiten-titel" class="h2 mb-3">Kundendaten bearbeiten</h1>
             <p class="small text-body-secondary">Mit * markierte Felder sind Pflichtfelder.</p>
 
@@ -64,6 +64,7 @@
 
                 <div class="d-flex flex-wrap gap-2">
                     <button type="submit" class="btn btn-primary">
+                        <?= motologIcon('floppy', 'icon') ?>
                         Kundendaten speichern
                     </button>
                     <a href="index.php" class="btn btn-outline-secondary">Abbrechen</a>

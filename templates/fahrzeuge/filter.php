@@ -1,10 +1,10 @@
 <form
     method="get"
     action="fahrzeuge.php"
-    class="row g-2 align-items-end mb-4"
+    class="filter-form row g-2 align-items-end mb-4"
     aria-label="Fahrzeugsuche und Kundenfilter"
 >
-    <div class="col-12 col-md-5">
+    <div class="col-12 col-lg">
         <label for="fahrzeugsuche" class="form-label">Suche</label>
         <input
             type="search"
@@ -17,7 +17,7 @@
         >
     </div>
 
-    <div class="col-12 col-md-5">
+    <div class="col-12 col-lg">
         <label for="kundenfilter" class="form-label">Kunde</label>
         <select class="form-select" id="kundenfilter" name="kunde_id">
             <option value="">Alle Kunden</option>
@@ -39,15 +39,25 @@
         </select>
     </div>
 
-    <div class="col-6 col-md-1">
-        <button type="submit" class="btn btn-primary w-100">Suchen</button>
-    </div>
-    <div class="col-6 col-md-1">
-        <a href="fahrzeuge.php" class="btn btn-outline-secondary w-100">Zurücksetzen</a>
+    <div class="col-12 col-sm-auto filter-actions">
+        <button type="submit" class="btn btn-primary">
+            <?= motologIcon('search', 'icon') ?>
+            <span>Suchen</span>
+        </button>
+        <a href="fahrzeuge.php" class="btn btn-outline-secondary">
+            <?= motologIcon('refresh', 'icon') ?>
+            <span>Zurücksetzen</span>
+        </a>
     </div>
 </form>
 
-<p class="small text-body-secondary">
-    Suchbegriff: „<?= e($fahrzeugsuche === '' ? 'leer' : $fahrzeugsuche) ?>“ ·
-    <?= count($fahrzeuge) ?> <?= count($fahrzeuge) === 1 ? 'Fahrzeug' : 'Fahrzeuge' ?> gefunden
-</p>
+<?php if ($fahrzeugsuche !== ''): ?>
+    <p class="filter-result small text-body-secondary">
+        Suchbegriff: „<?= e($fahrzeugsuche) ?>“ ·
+        <?= count($fahrzeuge) ?> <?= count($fahrzeuge) === 1 ? 'Fahrzeug' : 'Fahrzeuge' ?> gefunden
+    </p>
+<?php else: ?>
+    <p class="filter-result small text-body-secondary">
+        <?= count($fahrzeuge) ?> <?= count($fahrzeuge) === 1 ? 'Fahrzeug' : 'Fahrzeuge' ?> gefunden
+    </p>
+<?php endif; ?>

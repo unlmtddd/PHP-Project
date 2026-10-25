@@ -1,6 +1,6 @@
 <section class="col-12 col-lg-4" aria-labelledby="formular-titel">
-    <div class="card border-0 shadow-sm">
-        <div class="card-body p-4">
+    <div class="card">
+        <div class="card-body">
             <h2 id="formular-titel" class="h5">Fahrzeug anlegen</h2>
 
             <?php if (empty($kunden)): ?>
@@ -61,7 +61,10 @@
                         </select>
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-100">Fahrzeug speichern</button>
+                    <button type="submit" class="btn btn-primary w-100">
+                        <?= motologIcon('floppy', 'icon') ?>
+                        <span>Fahrzeug speichern</span>
+                    </button>
                 </form>
             <?php endif; ?>
         </div>

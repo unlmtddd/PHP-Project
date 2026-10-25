@@ -1,6 +1,6 @@
 <section class="col-12 col-lg-7" aria-labelledby="fahrzeug-bearbeiten-titel">
-    <div class="card border-0 shadow-sm">
-        <div class="card-body p-4">
+    <div class="card">
+        <div class="card-body">
             <h1 id="fahrzeug-bearbeiten-titel" class="h2 mb-3">Fahrzeug bearbeiten</h1>
             <p class="small text-body-secondary">Mit * markierte Felder sind Pflichtfelder.</p>
 
@@ -68,7 +68,10 @@
                 </fieldset>
 
                 <div class="d-flex flex-wrap gap-2">
-                    <button type="submit" class="btn btn-primary">Fahrzeugdaten speichern</button>
+                    <button type="submit" class="btn btn-primary">
+                        <?= motologIcon('floppy', 'icon') ?>
+                        <span>Fahrzeugdaten speichern</span>
+                    </button>
                     <a href="fahrzeuge.php" class="btn btn-outline-secondary">Abbrechen</a>
                 </div>
             </form>
